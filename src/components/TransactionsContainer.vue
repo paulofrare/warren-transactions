@@ -16,6 +16,7 @@
 import { defineComponent, reactive } from "vue";
 import Filter from "../components/icons/Filter.vue";
 import TransactionsFilter from "../components/TransactionsFilter.vue";
+import services from "../services";
 
 type State = {
   filter: boolean;
@@ -36,6 +37,17 @@ export default defineComponent({
     const state = reactive<State>({
       filter: false,
     });
+
+    async function getTransactions() {
+      try {
+        const response = await services.transactions.getTransactions();
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getTransactions();
 
     function handleFilter(): void {
       state.filter = !state.filter;

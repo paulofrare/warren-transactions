@@ -102,6 +102,7 @@ export default defineComponent({
 
 .filter-container__buttons {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 .filter-container__item {

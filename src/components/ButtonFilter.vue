@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ButtonFilter",
@@ -25,15 +25,12 @@ export default defineComponent({
   border-radius: 10px;
   padding: 7px 15px;
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 .btn-active {
   background-color: #e02b57;
   color: #ffffff;
-}
-.btn-inactive {
-  background-color: #f0f0f0;
-  color: #2e2d33;
 }
 </style>
