@@ -17,6 +17,7 @@ import { defineComponent, reactive } from "vue";
 import Filter from "../components/icons/Filter.vue";
 import TransactionsFilter from "../components/TransactionsFilter.vue";
 import services from "../services";
+import { groupByDate } from "../utils/groupByDate";
 
 type State = {
   filter: boolean;
@@ -41,7 +42,7 @@ export default defineComponent({
     async function getTransactions() {
       try {
         const response = await services.transactions.getTransactions();
-        console.log(response.data);
+        console.log(groupByDate(response.data));
       } catch (error) {
         console.log(error);
       }

@@ -31,15 +31,20 @@
 import { defineComponent, reactive } from "vue";
 import ButtonFilter from "../components/ButtonFilter.vue";
 
+type Options = {
+  title: string;
+  active: boolean;
+};
+
 type State = {
-  titleOptions: any;
-  statusOptions: any;
+  titleOptions: Options[];
+  statusOptions: Options[];
 };
 
 interface SetupReturn {
   state: State;
-  handleActiveTitle(item: any): void;
-  handleActiveStatus(item: any): void;
+  handleActiveTitle(item: Options): void;
+  handleActiveStatus(item: Options): void;
 }
 
 export default defineComponent({
@@ -79,10 +84,10 @@ export default defineComponent({
       ],
     });
 
-    function handleActiveTitle(item: any): void {
+    function handleActiveTitle(item: Options): void {
       item.active = !item.active;
     }
-    function handleActiveStatus(item: any): void {
+    function handleActiveStatus(item: Options): void {
       item.active = !item.active;
     }
 

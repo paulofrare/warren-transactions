@@ -3,7 +3,7 @@ import { Transaction } from '../types/transaction'
 import { RequestError } from '../types/error'
 
 type GetTransactions = {
-    data: Transaction;
+    data: Transaction[];
     errors: RequestError | null;
 }
 
@@ -12,7 +12,7 @@ export interface TransactionServiceInterface {
 }
 function TransactionService(httpClient: AxiosInstance): TransactionServiceInterface {
     async function getTransactions(): Promise<GetTransactions> {
-        const response = await httpClient.get<Transaction>('/transactions')
+        const response = await httpClient.get<Transaction[]>('/transactions')
 
         let errors: RequestError | null = null
 
