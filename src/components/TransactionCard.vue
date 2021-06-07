@@ -71,6 +71,7 @@ export default defineComponent({
   padding: 8px;
   display: grid;
   grid-template-columns: 2.5fr 1fr;
+
   background: #f0f0f0;
   border-radius: 5px;
 }
@@ -81,15 +82,18 @@ export default defineComponent({
 
 .card-transaction__description {
   margin-top: 12px;
+  font-size: 12px;
 }
 
 .card-transaction__amount {
   text-align: end;
+  font-weight: 500;
 }
 
 .card-transaction__status {
   text-align: end;
   margin-top: 12px;
+  font-size: 12px;
 }
 
 .card-transaction__title-box {

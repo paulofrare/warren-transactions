@@ -34,8 +34,18 @@ type State = {
 interface SetupReturn {
   state: State;
   handleFilter(): void;
-  updateTransactions(type: any): void;
+  updateTransactions(type: TypeOptions): void;
 }
+
+type Options = {
+  title: string;
+  active: boolean;
+};
+
+type TypeOptions = {
+  title: string;
+  options: Options[];
+};
 
 export default defineComponent({
   name: "TransactionsContainer",
@@ -63,15 +73,13 @@ export default defineComponent({
 
     getTransactions();
 
-    function updateTransactions(filter: any) {
+    function updateTransactions(filter: TypeOptions) {
       state.orderedTransactions = groupByDate(
         filterTransactions(
           filter,
           JSON.parse(JSON.stringify(state.transactions))
         )
       );
-
-      console.log(state.orderedTransactions);
     }
 
     function handleFilter(): void {
