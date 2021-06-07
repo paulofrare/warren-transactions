@@ -1,0 +1,119 @@
+<template>
+  <div class="container-card">
+    <div class="card-transaction">
+      <div class="card-transaction__title-box">
+        <div
+          class="card-transaction__title-span"
+          :class="[
+            { 'color-rescue': transaction.title === 'Resgate' },
+            { 'color-internal-movement': transaction.title === 'Mov. interna' },
+            { 'color-deposit': transaction.title === 'Depósito' },
+          ]"
+        ></div>
+        <div class="card-transaction__title">{{ transaction.title }}</div>
+      </div>
+      <div class="card-transaction__amount">{{ transaction.amount }}</div>
+      <div class="card-transaction__description">
+        {{ transaction.description }}
+      </div>
+      <div class="card-transaction__status">{{ transaction.status }}</div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, reactive, ComputedRef, computed } from "vue";
+import { Transaction } from "../types/transaction";
+
+type State = {};
+
+interface SetupReturn {
+  state: State;
+  transaction: ComputedRef<Transaction>;
+}
+
+export default defineComponent({
+  name: "TransactionCard",
+  props: ["transactionItem"],
+  components: {},
+  setup(props): SetupReturn {
+    const state = reactive<State>({});
+
+    const transaction = computed<Transaction>(() => {
+      const resp = JSON.parse(JSON.stringify(props.transactionItem));
+      if (resp.status === "created") resp.status = "Solicitada";
+      if (resp.status === "processing") resp.status = "Processando";
+      if (resp.status === "processed") resp.status = "Concluída";
+      if (resp.title === "Movimentação interna") resp.title = "Mov. interna";
+      resp.amount = resp.amount.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
+      return resp;
+    });
+
+    return {
+      state,
+      transaction,
+    };
+  },
+});
+</script>
+
+<style scoped>
+.container-card {
+  margin-bottom: 10px;
+  color: #2e2d33;
+  font-family: "Roboto", sans-serif;
+}
+
+.card-transaction {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+.card-transaction__title {
+  font-size: 18px;
+}
+
+.card-transaction__description {
+  margin-top: 12px;
+}
+
+.card-transaction__amount {
+  text-align: end;
+}
+
+.card-transaction__status {
+  text-align: end;
+  margin-top: 12px;
+}
+
+.card-transaction__title-box {
+  display: flex;
+  align-items: center;
+}
+
+.card-transaction__title-span {
+  content: "";
+  display: inline-block;
+  width: 27px;
+  height: 6px;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.color-rescue {
+  background-color: #d38c8c;
+}
+.color-deposit {
+  background-color: #83d69a;
+}
+.color-internal-movement {
+  background-color: #ddb972;
+}
+</style>

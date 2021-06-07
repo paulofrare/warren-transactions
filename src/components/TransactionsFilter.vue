@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, SetupContext } from "vue";
 import ButtonFilter from "../components/ButtonFilter.vue";
 
 type Options = {
@@ -45,14 +45,16 @@ interface SetupReturn {
   state: State;
   handleActiveTitle(item: Options): void;
   handleActiveStatus(item: Options): void;
+  emit: SetupContext["emit"];
 }
 
 export default defineComponent({
   name: "TransactionsFilter",
+  emits: ["modified-filter"],
   components: {
     ButtonFilter,
   },
-  setup(): SetupReturn {
+  setup(_, { emit }: SetupContext): SetupReturn {
     const state = reactive<State>({
       titleOptions: [
         {
@@ -86,15 +88,24 @@ export default defineComponent({
 
     function handleActiveTitle(item: Options): void {
       item.active = !item.active;
+      emit("modified-filter", {
+        titleOptions: JSON.parse(JSON.stringify(state.titleOptions)),
+        statusOptions: JSON.parse(JSON.stringify(state.statusOptions)),
+      });
     }
     function handleActiveStatus(item: Options): void {
       item.active = !item.active;
+      emit("modified-filter", {
+        titleOptions: JSON.parse(JSON.stringify(state.titleOptions)),
+        statusOptions: JSON.parse(JSON.stringify(state.statusOptions)),
+      });
     }
 
     return {
       state,
       handleActiveTitle,
       handleActiveStatus,
+      emit,
     };
   },
 });

@@ -11,7 +11,7 @@ import { defineComponent } from "vue";
 import Logo from "../components/icons/logo.vue";
 
 export default defineComponent({
-  name: "App",
+  name: "Header",
   components: { Logo },
   setup() {},
 });

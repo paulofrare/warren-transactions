@@ -7,7 +7,10 @@
       </button>
     </div>
     <div v-show="state.filter">
-      <TransactionsFilter />
+      <TransactionsFilter @modified-filter="updateTransactions" />
+    </div>
+    <div v-for="(transaction, index) in state.orderedTransactions" :key="index">
+      <TransactionGroup :transaction="transaction" />
     </div>
   </div>
 </template>
@@ -16,16 +19,22 @@
 import { defineComponent, reactive } from "vue";
 import Filter from "../components/icons/Filter.vue";
 import TransactionsFilter from "../components/TransactionsFilter.vue";
+import TransactionGroup from "../components/TransactionGroup.vue";
 import services from "../services";
 import { groupByDate } from "../utils/groupByDate";
+import { filterTransactions } from "../utils/filterTransactions";
+import { Transaction } from "../types/transaction";
 
 type State = {
   filter: boolean;
+  transactions: Transaction[];
+  orderedTransactions: any;
 };
 
 interface SetupReturn {
   state: State;
   handleFilter(): void;
+  updateTransactions(type: any): void;
 }
 
 export default defineComponent({
@@ -33,22 +42,37 @@ export default defineComponent({
   components: {
     Filter,
     TransactionsFilter,
+    TransactionGroup,
   },
   setup(): SetupReturn {
     const state = reactive<State>({
       filter: false,
+      transactions: [],
+      orderedTransactions: null,
     });
 
     async function getTransactions() {
       try {
         const response = await services.transactions.getTransactions();
-        console.log(groupByDate(response.data));
+        state.transactions = response.data;
+        state.orderedTransactions = groupByDate(response.data);
       } catch (error) {
         console.log(error);
       }
     }
 
     getTransactions();
+
+    function updateTransactions(filter: any) {
+      state.orderedTransactions = groupByDate(
+        filterTransactions(
+          filter,
+          JSON.parse(JSON.stringify(state.transactions))
+        )
+      );
+
+      console.log(state.orderedTransactions);
+    }
 
     function handleFilter(): void {
       state.filter = !state.filter;
@@ -57,6 +81,7 @@ export default defineComponent({
     return {
       state,
       handleFilter,
+      updateTransactions,
     };
   },
 });
@@ -65,6 +90,7 @@ export default defineComponent({
 <style scoped>
 .container {
   max-width: 600px;
+  padding-bottom: 30px;
 }
 .container__header {
   margin: 10px;

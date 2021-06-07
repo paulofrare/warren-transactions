@@ -2,7 +2,7 @@ import { Transaction } from '../types/transaction'
 
 type groupList = { [key: string]: Transaction[]; }
 
-export function groupByDate(list: Transaction[]) {
+export function groupByDate(list: Transaction[]): [string, Transaction[]][] {
     const groupList: groupList = {}
 
     list.forEach(el => {
