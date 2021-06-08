@@ -1,6 +1,6 @@
 <template>
   <div class="container-card">
-    <div class="card-transaction">
+    <div class="card-transaction" @click.prevent="handleModal">
       <div class="card-transaction__title-box">
         <div
           class="card-transaction__title-span"
@@ -24,12 +24,15 @@
 <script lang="ts">
 import { defineComponent, reactive, ComputedRef, computed } from "vue";
 import { Transaction } from "../types/transaction";
+import useStore from "../hooks/store";
+import { setStateModal, setTransaction } from "../store/index";
 
 type State = {};
 
 interface SetupReturn {
   state: State;
   transaction: ComputedRef<Transaction>;
+  handleModal(): void;
 }
 
 export default defineComponent({
@@ -38,6 +41,7 @@ export default defineComponent({
   components: {},
   setup(props): SetupReturn {
     const state = reactive<State>({});
+    const store = useStore();
 
     const transaction = computed<Transaction>(() => {
       const resp = JSON.parse(JSON.stringify(props.transactionItem));
@@ -52,9 +56,15 @@ export default defineComponent({
       return resp;
     });
 
+    function handleModal() {
+      setStateModal(!store.stateModal);
+      setTransaction(props.transactionItem);
+    }
+
     return {
       state,
       transaction,
+      handleModal,
     };
   },
 });
@@ -65,6 +75,7 @@ export default defineComponent({
   margin-bottom: 10px;
   color: #2e2d33;
   font-family: "Roboto", sans-serif;
+  cursor: pointer;
 }
 
 .card-transaction {
