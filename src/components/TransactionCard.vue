@@ -1,13 +1,22 @@
 <template>
-  <div class="container-card">
+  <div class="card">
     <div class="card-transaction" @click.prevent="handleModal">
       <div class="card-transaction__title-box">
         <div
           class="card-transaction__title-span"
           :class="[
-            { 'color-rescue': transaction.title === 'Resgate' },
-            { 'color-internal-movement': transaction.title === 'Mov. interna' },
-            { 'color-deposit': transaction.title === 'Depósito' },
+            {
+              'card-transaction__title-span--color-rescue':
+                transaction.title === 'Resgate',
+            },
+            {
+              'card-transaction__title-span--color-internal-movement':
+                transaction.title === 'Mov. interna',
+            },
+            {
+              'card-transaction__title-span--color-deposit':
+                transaction.title === 'Depósito',
+            },
           ]"
         ></div>
         <div class="card-transaction__title">{{ transaction.title }}</div>
@@ -71,7 +80,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-card {
+.card {
   margin-bottom: 10px;
   color: #2e2d33;
   font-family: "Roboto", sans-serif;
@@ -122,13 +131,13 @@ export default defineComponent({
   margin-right: 5px;
 }
 
-.color-rescue {
+.card-transaction__title-span--color-rescue {
   background-color: #d38c8c;
 }
-.color-deposit {
+.card-transaction__title-span--color-deposit {
   background-color: #83d69a;
 }
-.color-internal-movement {
+.card-transaction__title-span--color-internal-movement {
   background-color: #ddb972;
 }
 </style>

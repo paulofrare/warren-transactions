@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
-    <div class="container__header">
-      <div class="container__title">Transações</div>
-      <button @click="handleFilter()" class="container__button-filter">
+  <div class="transaction-container">
+    <div class="transaction-container__header">
+      <div class="transaction-container__title">Transações</div>
+      <button
+        @click="handleFilter()"
+        class="transaction-container__button-filter"
+      >
         <Filter />
       </button>
     </div>
@@ -17,7 +20,7 @@
         <TransactionGroup :transaction="transaction" />
       </div>
     </div>
-    <div v-else-if="state.error" class="error">
+    <div v-else-if="state.error" class="transaction-container__error">
       Ops.. Ocorreu algum erro!! Tente novamente mais tarde.
     </div>
     <Loader v-else />
@@ -113,23 +116,23 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container {
+.transaction-container {
   max-width: 600px;
   padding-bottom: 30px;
 }
-.container__header {
+.transaction-container__header {
   margin: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.container__title {
+.transaction-container__title {
   font-weight: 800;
   font-size: 24px;
   color: #6f6f6f;
 }
 
-.container__button-filter {
+.transaction-container__button-filter {
   display: flex;
   border: none;
   background: #e02b57;
@@ -139,7 +142,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.error {
+.transaction-container__error {
   text-align: center;
   margin-top: 100px;
   font-family: "Montserrat", sans-serif;

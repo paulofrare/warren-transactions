@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="home">
     <Header />
     <TransactionsContainer />
   </div>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-.container {
+.home {
   margin: 0 auto;
 }
 </style>

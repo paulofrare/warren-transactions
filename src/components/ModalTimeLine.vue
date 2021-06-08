@@ -1,25 +1,30 @@
 <template>
-  <div class="modal-timeline-container">
-    <div class="back-line">
+  <div class="modal-timeline">
+    <div class="modal-timeline__back-line">
       <div
-        class="front-line"
+        class="modal-timeline__front-line"
         :class="[
-          { 'front-line-stepTwo': setup.stepTwo },
-          { 'front-line-stepThree': setup.stepThree },
+          { 'modal-timeline__front-line-stepTwo': setup.stepTwo },
+          { 'modal-timeline__front-line-stepThree': setup.stepThree },
         ]"
       ></div>
-      <div class="circles-box">
-        <div class="circle circle-active">
-          <div class="circle-label">Solicitada</div>
+      <div class="modal-timeline__circles-box">
+        <div class="modal-timeline__circle modal-timeline__circle-active">
+          <div class="modal-timeline__circle-label">Solicitada</div>
         </div>
         <div
-          class="circle"
-          :class="{ 'circle-active': setup.stepTwo | setup.stepThree }"
+          class="modal-timeline__circle"
+          :class="{
+            'modal-timeline__circle-active': setup.stepTwo | setup.stepThree,
+          }"
         >
-          <div class="circle-label-two">Processando</div>
+          <div class="modal-timeline__circle-label-two">Processando</div>
         </div>
-        <div class="circle" :class="{ 'circle-active': setup.stepThree }">
-          <div class="circle-label">Concluída</div>
+        <div
+          class="modal-timeline__circle"
+          :class="{ 'modal-timeline__circle-active': setup.stepThree }"
+        >
+          <div class="modal-timeline__circle-label">Concluída</div>
         </div>
       </div>
     </div>
@@ -49,51 +54,39 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.modal-timeline-container {
+.modal-timeline {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.back-line {
+.modal-timeline__back-line {
   position: relative;
   background-color: #c4c4c4;
   width: 100%;
   height: 2px;
 }
 
-.front-line {
+.modal-timeline__front-line {
   position: absolute;
   width: 0%;
   background-color: #e02b57;
   height: 2px;
 }
-.front-line-stepTwo {
+.modal-timeline__front-line-stepTwo {
   width: 50%;
 }
-.front-line-stepThree {
+.modal-timeline__front-line-stepThree {
   width: 100%;
 }
 
-.circles-box {
+.modal-timeline__circles-box {
   position: absolute;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.label-box {
-  position: absolute;
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-family: "Roboto";
-  font-size: 12px;
-  color: #2e2d33;
-  margin-left: -18px;
-}
-
-.circle {
+.modal-timeline__circle {
   width: 15px;
   height: 15px;
   margin-top: -6px;
@@ -104,15 +97,15 @@ export default defineComponent({
   color: #2e2d33;
 }
 
-.circle-active {
+.modal-timeline__circle-active {
   background-color: #e02b57;
 }
 
-.circle-label {
+.modal-timeline__circle-label {
   margin-left: -19px;
   margin-top: 20px;
 }
-.circle-label-two {
+.modal-timeline__circle-label-two {
   margin-left: -29px;
   margin-top: 20px;
 }

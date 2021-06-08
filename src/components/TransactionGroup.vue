@@ -1,6 +1,6 @@
 <template>
-  <div class="container-group">
-    <div class="transaction-group-title">
+  <div class="transaction-group">
+    <div class="transaction-group__title">
       {{ transactionDate }}
     </div>
     <div v-for="item in transaction[1]" :key="item.index">
@@ -43,12 +43,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-group {
+.transaction-group {
   margin: 10px;
   margin-bottom: 26px;
 }
 
-.transaction-group-title {
+.transaction-group__title {
   margin-bottom: 8px;
 }
 </style>

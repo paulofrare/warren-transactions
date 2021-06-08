@@ -3,13 +3,12 @@
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PaginaCarregando",
+  name: "Loader",
 };
 </script>
 
@@ -36,9 +35,7 @@ export default {
 .loading span:nth-child(3) {
   animation-delay: 0.3s;
 }
-.loading span:nth-child(4) {
-  animation-delay: 0.4s;
-}
+
 @keyframes dots {
   from {
     transform: translate3d(0, 0, 0);

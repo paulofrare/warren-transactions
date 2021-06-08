@@ -1,12 +1,12 @@
 <template>
   <teleport to="body">
-    <div v-if="state.modal" class="modal-container">
-      <div class="modal-body">
-        <div @click.prevent="handleModal" class="modal-button-close">
+    <div v-if="state.modal" class="modal">
+      <div class="modal__body">
+        <div @click.prevent="handleModal" class="modal__button-close">
           <Close />
         </div>
-        <div class="modal-title">{{ title }}</div>
-        <div class="modal-value">
+        <div class="modal__title">{{ title }}</div>
+        <div class="modal__value">
           {{
             state.transaction.amount.toLocaleString("pt-br", {
               style: "currency",
@@ -14,13 +14,13 @@
             })
           }}
         </div>
-        <div class="modal-time-line">
+        <div class="modal__time-line">
           <ModalTimeLine :setup="state.setupTmeLine" />
         </div>
-        <div class="modal-data-label">Transferido de:</div>
-        <div class="modal-data-value">{{ state.transaction.from }}</div>
-        <div class="modal-data-label">para:</div>
-        <div class="modal-data-value">{{ state.transaction.to }}</div>
+        <div class="modal__data-label">Transferido de:</div>
+        <div class="modal__data-value">{{ state.transaction.from }}</div>
+        <div class="modal__data-label">para:</div>
+        <div class="modal__data-value">{{ state.transaction.to }}</div>
       </div>
     </div>
   </teleport>
@@ -124,7 +124,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.modal-container {
+.modal {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -136,7 +136,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal-body {
+.modal__body {
   width: 90%;
   max-width: 600px;
   height: 450px;
@@ -150,37 +150,38 @@ export default defineComponent({
   position: relative;
 }
 
-.modal-title {
+.modal__title {
   font-size: 24px;
   color: #6f6f6f;
   font-weight: 600;
 }
 
-.modal-value {
+.modal__value {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-top: 15px;
 }
 
-.modal-time-line {
+.modal__time-line {
   width: 80%;
   max-width: 300px;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: 60px;
 }
 
-.modal-data-label {
-  margin-top: 50px;
+.modal__data-label {
+  margin-top: 20px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
 
-.modal-data-value {
+.modal__data-value {
   margin-top: 12px;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
 }
 
-.modal-button-close {
+.modal__button-close {
   position: absolute;
   top: 30px;
   right: 30px;

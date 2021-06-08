@@ -1,8 +1,8 @@
 <template>
-  <div class="filter-container">
-    <div class="filter-container__item">
+  <div class="filter">
+    <div class="filter__item">
       <span>Título</span>
-      <div class="filter-container__buttons">
+      <div class="filter__buttons">
         <div v-for="item in state.titleOptions" :key="item.title">
           <ButtonFilter
             @click.prevent="handleActiveTitle(item)"
@@ -12,9 +12,9 @@
         </div>
       </div>
     </div>
-    <div class="filter-container__item">
+    <div class="filter__item">
       <span>Status</span>
-      <div class="filter-container__buttons">
+      <div class="filter__buttons">
         <div v-for="item in state.statusOptions" :key="item.title">
           <ButtonFilter
             @click.prevent="handleActiveStatus(item)"
@@ -112,16 +112,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.filter-container {
+.filter {
   margin: 10px;
 }
 
-.filter-container__buttons {
+.filter__buttons {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
 }
-.filter-container__item {
+.filter__item {
   margin-top: 10px;
 }
 </style>
