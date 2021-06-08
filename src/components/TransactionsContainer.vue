@@ -119,6 +119,7 @@ export default defineComponent({
 .transaction-container {
   max-width: 600px;
   padding-bottom: 30px;
+  margin: 0 auto;
 }
 .transaction-container__header {
   margin: 10px;
