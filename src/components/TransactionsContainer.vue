@@ -9,9 +9,18 @@
     <div v-show="state.filter">
       <TransactionsFilter @modified-filter="updateTransactions" />
     </div>
-    <div v-for="(transaction, index) in state.orderedTransactions" :key="index">
-      <TransactionGroup :transaction="transaction" />
+    <div v-if="state.show">
+      <div
+        v-for="(transaction, index) in state.orderedTransactions"
+        :key="index"
+      >
+        <TransactionGroup :transaction="transaction" />
+      </div>
     </div>
+    <div v-else-if="state.error" class="error">
+      Ops.. Ocorreu algum erro!! Tente novamente mais tarde.
+    </div>
+    <Loader v-else />
   </div>
 </template>
 
@@ -24,11 +33,14 @@ import services from "../services";
 import { groupByDate } from "../utils/groupByDate";
 import { filterTransactions } from "../utils/filterTransactions";
 import { Transaction } from "../types/transaction";
+import Loader from "./Loader.vue";
 
 type State = {
   filter: boolean;
   transactions: Transaction[];
   orderedTransactions: any;
+  show: boolean;
+  error: boolean;
 };
 
 interface SetupReturn {
@@ -53,12 +65,15 @@ export default defineComponent({
     Filter,
     TransactionsFilter,
     TransactionGroup,
+    Loader,
   },
   setup(): SetupReturn {
     const state = reactive<State>({
       filter: false,
       transactions: [],
       orderedTransactions: null,
+      show: false,
+      error: false,
     });
 
     async function getTransactions() {
@@ -66,7 +81,9 @@ export default defineComponent({
         const response = await services.transactions.getTransactions();
         state.transactions = response.data;
         state.orderedTransactions = groupByDate(response.data);
+        state.show = true;
       } catch (error) {
+        state.error = true;
         console.log(error);
       }
     }
@@ -120,5 +137,12 @@ export default defineComponent({
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+}
+
+.error {
+  text-align: center;
+  margin-top: 100px;
+  font-family: "Montserrat", sans-serif;
+  color: #6f6f6f;
 }
 </style>
