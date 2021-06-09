@@ -22,7 +22,7 @@ Para os filtros e manipulação da lista de transações, como o agrupamento por
 
 ## Descrição da aplicação
 
-A aplicação consiste em uma tela de listagem de transações financeiras. Nela pode ser aplicado um filtro por título da transação ou status. Clicando na transação, é exibido um modal com os detalhes da mesma.
+A aplicação consiste em uma tela de listagem de transações financeiras. Nela podem ser aplicados filtros por título da transação ou status. Clicando na transação, é exibido um modal com os detalhes da mesma.
 
 
 ## Scripts
