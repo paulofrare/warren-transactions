@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from "vue";
-import ButtonFilter from "../components/ButtonFilter.vue";
+import ButtonFilter from "../ButtonFilter/index.vue";
 
 type Options = {
   title: string;

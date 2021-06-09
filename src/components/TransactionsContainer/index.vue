@@ -29,14 +29,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import Filter from "../components/icons/Filter.vue";
-import TransactionsFilter from "../components/TransactionsFilter.vue";
-import TransactionGroup from "../components/TransactionGroup.vue";
-import services from "../services";
-import { groupByDate } from "../utils/groupByDate";
-import { filterTransactions } from "../utils/filterTransactions";
-import { Transaction } from "../types/transaction";
-import Loader from "./Loader.vue";
+import Filter from "../icons/Filter.vue";
+import TransactionsFilter from "../TransactionsFilter/index.vue";
+import TransactionGroup from "../TransactionGroup/index.vue";
+import services from "../../services";
+import { groupByDate } from "../../utils/groupByDate";
+import { filterTransactions } from "../../utils/filterTransactions";
+import { Transaction } from "../../types/transaction";
+import Loader from "../Loader/index.vue";
 
 type State = {
   filter: boolean;

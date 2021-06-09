@@ -28,10 +28,10 @@
 
 <script lang='ts'>
 import { defineComponent, reactive, watch, computed, ComputedRef } from "vue";
-import Close from "./icons/Close.vue";
-import ModalTimeLine from "./ModalTimeLine.vue";
-import useStore from "../hooks/store";
-import { resetStore } from "../store/index";
+import Close from "../icons/Close.vue";
+import ModalTimeLine from "../ModalTimeLine/index.vue";
+import useStore from "../../hooks/store";
+import { resetStore } from "../../store/index";
 import { Transaction } from "@/types/transaction";
 
 type State = {
@@ -86,12 +86,11 @@ export default defineComponent({
       () => store.transaction,
       () => {
         state.transaction = store.transaction;
-
-        if (state.transaction.status === "created")
+        if (state.transaction.status === "Policitada")
           state.setupTmeLine.stepOne = true;
-        if (state.transaction.status === "processing")
+        if (state.transaction.status === "Processando")
           state.setupTmeLine.stepTwo = true;
-        if (state.transaction.status === "processed")
+        if (state.transaction.status === "Concluída")
           state.setupTmeLine.stepThree = true;
       }
     );

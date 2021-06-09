@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent, watch, reactive } from "vue";
 import Home from "./views/Home/index.vue";
-import TransactionModal from "./components/TransactionModal.vue";
+import TransactionModal from "./components/TransactionModal/index.vue";
 
 type State = {};
 

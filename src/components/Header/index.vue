@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Logo from "../components/icons/logo.vue";
+import Logo from "../icons/logo.vue";
 
 export default defineComponent({
   name: "Header",

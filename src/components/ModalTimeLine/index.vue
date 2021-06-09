@@ -10,7 +10,9 @@
       ></div>
       <div class="modal-timeline__circles-box">
         <div class="modal-timeline__circle modal-timeline__circle-active">
-          <div class="modal-timeline__circle-label">Solicitada</div>
+          <div id="label-circle-one" class="modal-timeline__circle-label">
+            Solicitada
+          </div>
         </div>
         <div
           class="modal-timeline__circle"
@@ -18,13 +20,17 @@
             'modal-timeline__circle-active': setup.stepTwo | setup.stepThree,
           }"
         >
-          <div class="modal-timeline__circle-label-two">Processando</div>
+          <div id="label-circle-two" class="modal-timeline__circle-label-two">
+            Processando
+          </div>
         </div>
         <div
           class="modal-timeline__circle"
           :class="{ 'modal-timeline__circle-active': setup.stepThree }"
         >
-          <div class="modal-timeline__circle-label">Concluída</div>
+          <div id="label-circle-three" class="modal-timeline__circle-label">
+            Concluída
+          </div>
         </div>
       </div>
     </div>
@@ -43,7 +49,7 @@ interface SetupReturn {
 export default defineComponent({
   components: {},
   props: ["setup"],
-  setup(props): SetupReturn {
+  setup(): SetupReturn {
     const state = reactive({});
 
     return {

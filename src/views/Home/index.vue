@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Header from "../../components/Header.vue";
-import TransactionsContainer from "../../components/TransactionsContainer.vue";
+import Header from "../../components/Header/index.vue";
+import TransactionsContainer from "../../components/TransactionsContainer/index.vue";
 export default {
   components: {
     Header,

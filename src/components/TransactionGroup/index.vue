@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ComputedRef, computed } from "vue";
-import TransactionCard from "./TransactionCard.vue";
-import { formatDateFull } from "../utils/formatDate";
+import TransactionCard from "../TransactionCard/index.vue";
+import { formatDateFull } from "../../utils/formatDate";
 
 type State = {};
 
@@ -28,9 +28,10 @@ export default defineComponent({
   setup(props): SetupReturn {
     const state = reactive<State>({});
 
-    const transactionDate = computed<string>((): any => {
-      const resp = JSON.parse(JSON.stringify(props.transaction[0]));
+    const transactionDate = computed<string>((): string => {
+      const resp = props.transaction[0];
       const respFormat = formatDateFull(resp);
+
       return respFormat;
     });
 

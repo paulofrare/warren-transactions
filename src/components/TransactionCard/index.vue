@@ -32,9 +32,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ComputedRef, computed } from "vue";
-import { Transaction } from "../types/transaction";
-import useStore from "../hooks/store";
-import { setStateModal, setTransaction } from "../store/index";
+import { Transaction } from "../../types/transaction";
+import useStore from "../../hooks/store";
+import { setStateModal, setTransaction } from "../../store/index";
 
 type State = {};
 
@@ -53,7 +53,7 @@ export default defineComponent({
     const store = useStore();
 
     const transaction = computed<Transaction>(() => {
-      const resp = JSON.parse(JSON.stringify(props.transactionItem));
+      const resp = props.transactionItem;
       if (resp.status === "created") resp.status = "Solicitada";
       if (resp.status === "processing") resp.status = "Processando";
       if (resp.status === "processed") resp.status = "Concluída";
