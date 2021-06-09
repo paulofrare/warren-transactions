@@ -16,7 +16,7 @@ Realizei o deploy da aplicação usando o Heroku. Ela pode ser acessada por [**e
 
 Para o desenvolvimento, utilizei Vue3 com TypeScript e Vue Test Utils para os testes unitários. 
 
-Procurei não usar bibliotecas externas, exceto o axios, que é habitualmente usado para lidar com as requisiçõe HTTP. E para o deploy precisei utilizar o express.
+Procurei não usar bibliotecas externas, exceto o axios, que é habitualmente usado para lidar com as requisições HTTP. E para o deploy precisei utilizar o express.
 
 Para os filtros e manipulação da lista de transações, como o agrupamento por datas, utilizei apenas funções nativas do javascript.
 
