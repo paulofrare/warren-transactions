@@ -1,4 +1,4 @@
-import { Transaction } from '../types/transaction'
+import { Transaction } from '@/types/transaction'
 
 type Active = {
     title: string,
@@ -8,43 +8,33 @@ type Active = {
 export function filterTransactions(filter: any, transactions: Transaction[]): Transaction[] {
 
     const filteredList: Transaction[] = []
-
     const { titleOptions, statusOptions } = filter
 
     const activeTitle = titleOptions.filter((el: Active) => el.active)
     const activeStatus = statusOptions.filter((el: Active) => el.active)
     const options = activeTitle.concat(activeStatus)
-    options.map((el: Active) => {
-        if (el.title === "Mov. Interna") el.title = 'Movimentação interna'
+    options.forEach((el: Active) => {
+        if (el.title === 'Mov. Interna') el.title = 'Movimentação interna'
     })
 
-
-
-    const optValues: any = []
+    const optValues: string[] = []
     options.forEach((el: Active) => {
         optValues.push(el.title)
     });
 
-
-    transactions.forEach(transaction => {
-
-        checkFilters(transaction)
-
-    })
+    transactions.forEach((transaction: Transaction) => checkFilters(transaction))
 
     if (options.length === 0) return transactions;
 
     function checkFilters(el: Transaction): void {
 
-        let status: string = ''
+        let title: string
 
-        if (el.status === 'created') status = 'Solicitada'
-        if (el.status === "processing") status = 'Processando'
-        if (el.status === 'processed') status = 'Concluída'
+        if (el.title === 'Mov. interna') title = 'Movimentação interna'
+        else title = el.title
 
-        if (optValues.includes(el.title) || optValues.includes(status)) filteredList.push(el)
+        if (optValues.includes(title) || optValues.includes(el.status)) filteredList.push(el)
     }
 
     return filteredList
-
 }

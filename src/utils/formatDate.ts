@@ -1,17 +1,21 @@
-const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-export function formatDateFull(date: string): String {
+const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-    let data = new Date(date);
-    let dataFormatada = `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear()}`
+export function formatDateFull(date: string): string {
 
-    return dataFormatada
+    const dateReplace = date.replace(/-/g, "/")
 
+    const newDate = new Date(dateReplace);
+    const formattedDate = `${newDate.getDate()} de ${months[newDate.getMonth()]} de ${newDate.getFullYear()}`
+
+    return formattedDate
 }
+
 export function formatDateShort(date: string): string {
 
-    let data = new Date(date);
-    let dataFormatada = `${data.getDate()} de ${meses[data.getMonth()]}`
+    const dateReplace = date.replace(/-/g, "/")
 
-    return dataFormatada
+    const newDate = new Date(dateReplace);
+    const formattedDate = `${newDate.getDate()} de ${months[newDate.getMonth()]}`
 
+    return formattedDate
 }
