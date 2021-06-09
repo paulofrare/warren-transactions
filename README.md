@@ -16,7 +16,7 @@ Para os filtros e manipulação da lista de transações, como o agrupamento por
 
 ## Scripts
 
-Para rodar o projeto, é necessária a v14 do Node. 
+**Para rodar o projeto, é necessária a v14 do Node.**
 
 ### Instalando as dependências
 ```
