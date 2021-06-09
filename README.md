@@ -38,12 +38,12 @@ npm run serve
 
 ### Testes Unitários 
 ```
-test:unit
+npm run test:unit
 ```
 
 ### Testes Unitários observando alterações no código 
 ```
-test:unit:watch
+npm run test:unit:watch
 ```
 
 ## Sobre o Desenvolvedor
