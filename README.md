@@ -33,7 +33,7 @@ npm install
 ```
 ### Levantando o servidor
 ```
-npm start
+npm run serve
 ```
 
 ### Testes Unitários 
