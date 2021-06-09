@@ -7,7 +7,8 @@ type Active = {
 
 export function filterTransactions(filter: any, transactions: Transaction[]): Transaction[] {
 
-    const filteredList: Transaction[] = []
+    let filteredListStepOne: Transaction[] = []
+    let filteredListStepTwo: Transaction[] = []
     const { titleOptions, statusOptions } = filter
 
     const activeTitle = titleOptions.filter((el: Active) => el.active)
@@ -22,19 +23,30 @@ export function filterTransactions(filter: any, transactions: Transaction[]): Tr
         optValues.push(el.title)
     });
 
-    transactions.forEach((transaction: Transaction) => checkFilters(transaction))
-
     if (options.length === 0) return transactions;
 
-    function checkFilters(el: Transaction): void {
+    transactions.forEach((transaction: Transaction) => checkFiltersTitle(transaction))
+
+    if (filteredListStepOne.length != 0) {
+        filteredListStepOne.forEach((transaction: Transaction) => checkFiltersStatus(transaction))
+        if (filteredListStepTwo.length === 0) filteredListStepTwo = filteredListStepOne
+    }
+    else transactions.forEach((transaction: Transaction) => checkFiltersStatus(transaction))
+
+    function checkFiltersTitle(el: Transaction): void {
 
         let title: string
 
         if (el.title === 'Mov. interna') title = 'Movimentação interna'
         else title = el.title
 
-        if (optValues.includes(title) || optValues.includes(el.status)) filteredList.push(el)
+        if (optValues.includes(title)) filteredListStepOne.push(el)
     }
 
-    return filteredList
+    function checkFiltersStatus(el: Transaction): void {
+
+        if (optValues.includes(el.status)) filteredListStepTwo.push(el)
+    }
+
+    return filteredListStepTwo
 }
