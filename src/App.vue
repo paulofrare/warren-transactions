@@ -4,26 +4,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, reactive } from "vue";
+import { defineComponent } from "vue";
 import Home from "./views/Home/index.vue";
 import TransactionModal from "./components/TransactionModal/index.vue";
-
-type State = {};
-
-interface SetupReturn {
-  state: State;
-}
 
 export default defineComponent({
   name: "App",
   components: { Home, TransactionModal },
-  setup(): SetupReturn {
-    const state = reactive<State>({});
-
-    return {
-      state,
-    };
-  },
 });
 </script>
 

@@ -1,6 +1,5 @@
 import TransactionGroup from './index.vue'
 import { mount } from '@vue/test-utils'
-import { Transaction } from '@/types/transaction'
 
 describe('<TransactionGroup />', () => {
 
